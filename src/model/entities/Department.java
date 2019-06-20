@@ -8,34 +8,29 @@ public class Department implements Serializable {
 
 	private Integer id;
 	private String name;
-
+	
 	public Department() {
 	}
 
 	public Department(Integer id, String name) {
 		this.id = id;
 		this.name = name;
-
 	}
 
 	public Integer getId() {
 		return id;
-
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
-
 	}
 
 	public String getName() {
 		return name;
-
 	}
 
 	public void setName(String name) {
 		this.name = name;
-
 	}
 
 	@Override
@@ -44,7 +39,6 @@ public class Department implements Serializable {
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
-
 	}
 
 	@Override
@@ -55,7 +49,6 @@ public class Department implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-
 		Department other = (Department) obj;
 		if (id == null) {
 			if (other.id != null)
@@ -69,5 +62,4 @@ public class Department implements Serializable {
 	public String toString() {
 		return "Department [id=" + id + ", name=" + name + "]";
 	}
-
 }
