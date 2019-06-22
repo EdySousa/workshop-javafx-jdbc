@@ -48,7 +48,8 @@ public class DepartmentListController implements Initializable {
 	@FXML
 	public void onBtNewAction(ActionEvent event) {
 		Stage parentStage = Utils.currentStage(event);
-		createDialogForm("/gui/DepartmentForm.fxml", parentStage);
+		Department obj = new Department();
+		createDialogForm(obj, "/gui/DepartmentForm.fxml", parentStage);
 	}
 	
 	public void setDepartmentService(DepartmentService service) {
@@ -80,18 +81,23 @@ public class DepartmentListController implements Initializable {
 		
 	}
 	
-	private void createDialogForm(String absoluteName, Stage parentStage) {
+	private void createDialogForm(Department obj, String absoluteName, Stage parentStage) {
 		
 		try {
+			// carregar a view pretendida.
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			Pane pane = loader.load();
 			
+			DepartmentFormController controller = loader.getController();
+			controller.setDeparment(obj);
+			controller.updateFormData();
+			
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Enter Department data");
-			dialogStage.setScene(new Scene(pane));
+			dialogStage.setTitle("Enter Department data"); // titulo da view
+			dialogStage.setScene(new Scene(pane)); 
 			dialogStage.setResizable(false); // a janela é de tamanho fixo
 			dialogStage.initOwner(parentStage); //indicar quem é o pai (o principal)
-			dialogStage.initModality(Modality.WINDOW_MODAL); //se não fechar não pode aceder a janela anterior
+			dialogStage.initModality(Modality.WINDOW_MODAL); //se não fechar não pode aceder a janela anteriorv(criar o modal)
 			dialogStage.showAndWait();
 			
 		} catch (IOException e) {
